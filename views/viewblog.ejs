@@ -7,7 +7,7 @@
   <body>
     <% include templates/header.ejs %>
 
-    <% blogdata.forEach(function(blog){ %>       <!-- categories is an array and item represents its element-->
+    <% blogdata.forEach(function(blog){ %>       
         <% if (blog._id == current){ %>
             <p><b><font size="5"><%= blog.name %></font></b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <a href="/delete/<%= blog._id %>"<font size="1"> Delete Blog</font></a></p>
