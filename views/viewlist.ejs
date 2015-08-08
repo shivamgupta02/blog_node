@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> View List </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <% include templates/header.ejs %>
+
+    <h2>List of Blogs</h2>
+    <ul>
+       <% blogdata.forEach(function(blog){ %>       <!-- categories is an array and item represents its element-->
+         <li><a href="/viewblog/<%= blog._id %>"><%= blog.name %></a></li>
+        <% } );%>
+    </ul>
+  </body>
+</html>

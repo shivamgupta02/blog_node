@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> View Blog </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <% include templates/header.ejs %>
+
+    <% blogdata.forEach(function(blog){ %>       <!-- categories is an array and item represents its element-->
+        <% if (blog._id == current){ %>
+            <p><b><font size="5"><%= blog.name %></font></b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="/delete/<%= blog._id %>"<font size="1"> Delete Blog</font></a></p>
+            <p><b><%= blog.author %></b></p>
+            <div style="width: 500px; border: 1px solid black">
+              <p style="margin: 0; padding: 10px"><%= blog.content %></p>
+            </div>
+            <p><b> Comments : </b></p>
+            <% blog.comments.forEach(function(comment){ %>
+              <p> <b><%= comment.commenter %></b> : <%= comment.comment %></p>
+            <% });%>
+            <form name="addcomment" method="POST" action="/addcomment/<%= blog._id %>">
+              <br><input type="text" name="comment_name" placeholder="Name"> <br>
+              <textarea rows="5" cols="20" name="comment" placeholder="Place your Comment here"></textarea>
+              <input type="submit" name="Submit">
+            </form>
+        <% } %>
+    <% } );%>
+      </body>
+</html>

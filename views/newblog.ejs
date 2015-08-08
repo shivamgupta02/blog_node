@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <% include templates/header.ejs %>
+
+    <h3> Time to write something !! </h3>
+    <form name="addblog" method="POST" action="/addblog">
+      <input type="text" name="blogname" placeholder="Blog Name"> <br><br>
+      <textarea rows="20" cols="100" name="blogcontent" placeholder="Content"></textarea> <br><br>
+      <input type="text" name="author" placeholder="Author Name">
+      <input type="submit" name="Submit">
+    </form>
+  </body>
+</html>
