@@ -41,6 +41,7 @@ router.post('/addblog', function(req,res){
   var blogName = req.body.blogname;
   var blogContent = req.body.blogcontent;
   var authorName = req.body.author;
+  var count = 0;
 
   var collection = db.get('usercollection');
 
@@ -49,7 +50,8 @@ router.post('/addblog', function(req,res){
         "name" : blogName,
         "content" : blogContent,
         "author" : authorName,
-        "comments" : []
+        "comments" : [],
+        "likes" : count
     }, function (err, doc) {
         if (err) {
             // If it failed, return error
@@ -88,7 +90,31 @@ router.post('/addcomment/:id', function(req,res){
     });
   });
 
-//adding comment to blog
+// liking blog
+router.get('/bloglike/:id/', function(req,res){
+  var db = req.db;
+
+  var id = req.params.id;
+  
+  var collection = db.get('usercollection');
+
+  // Submit to the DB
+    collection.update(
+      {_id : id},
+      { "$inc":{likes : 1}},
+      function (err, doc) {
+        if (err) {
+            // If it failed, return error
+            res.send("There was a problem adding the information to the database.");
+        }
+        else {
+            // And forward to success page
+            res.redirect("/viewlist");
+        }
+    });
+  });
+
+//deleting blog
 router.get('/delete/:id', function(req,res){
   var db = req.db;
 

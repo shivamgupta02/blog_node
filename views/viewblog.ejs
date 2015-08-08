@@ -15,6 +15,7 @@
             <div style="width: 500px; border: 1px solid black">
               <p style="margin: 0; padding: 10px"><%= blog.content %></p>
             </div>
+            <a href="/bloglike/<%= blog._id %>">like</a>&nbsp;&nbsp;<%= blog.likes %>
             <p><b> Comments : </b></p>
             <% blog.comments.forEach(function(comment){ %>
               <p> <b><%= comment.commenter %></b> : <%= comment.comment %></p>
